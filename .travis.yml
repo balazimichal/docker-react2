@@ -1,0 +1,10 @@
+language: generic
+sudo: require
+services:
+  - docker
+
+before_install:
+  - docker build -t balazimichal/docker-react2 -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true balazimichal/docker-react2 npm run test -- --coverage
